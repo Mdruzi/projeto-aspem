@@ -103,7 +103,6 @@ function bindLogin() {
     if (user) { state.user=user; state.alertDismissed=false; render(); }
     else { app.innerHTML = renderLogin('Usuário ou senha incorretos. Tente novamente.'); bindLogin(); }
   });
-  });
 }
 
 // ── BIND VIEWS ────────────────────────────────────────────────
