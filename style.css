@@ -413,13 +413,54 @@ tr:hover td { background: #FAFBFC; }
 .search-input input { padding-left: 34px; }
 .search-input::before { content: '🔍'; position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 13px; }
 
+/* ── MOBILE MENU BTN ── */
+.mobile-menu-btn {
+  display: none; background: none; border: none;
+  font-size: 24px; color: var(--text); cursor: pointer;
+  padding: 4px; line-height: 1;
+}
+
+/* ── SIDEBAR OVERLAY ── */
+.sidebar-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+  z-index: 90; opacity: 0; pointer-events: none;
+  transition: opacity 0.3s;
+}
+
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
-  .sidebar { transform: translateX(-100%); }
+  .sidebar { 
+    transform: translateX(-100%); 
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--shadow-lg);
+  }
+  .sidebar-open .sidebar { transform: translateX(0); }
+  .sidebar-open .sidebar-overlay { opacity: 1; pointer-events: auto; }
+  
   .main-content { margin-left: 0; }
-  .form-row-2, .form-row-3 { grid-template-columns: 1fr; }
-  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .mobile-menu-btn { display: block; }
+  
+  .topbar { padding: 12px 16px; flex-wrap: wrap; gap: 10px; }
+  .topbar-stat { display: none; } /* Ocultar stats no mobile para economizar espaço */
+  .page-content { padding: 16px; }
+  
+  .card-header { padding: 14px 16px; flex-direction: column; align-items: flex-start; gap: 10px; }
+  .card-body { padding: 16px; }
+  
+  .form-row-2, .form-row-3 { grid-template-columns: 1fr; gap: 10px; }
+  .kpi-grid { grid-template-columns: 1fr; }
   .login-demo-grid { grid-template-columns: 1fr; }
+  
+  .req-card-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .req-meta { flex-direction: column; gap: 6px; }
+  .toolbar { flex-direction: column; align-items: stretch; }
+  .toolbar .btn { width: 100%; }
+  .search-input { width: 100%; }
+  
+  /* Modal responsivo */
+  .modal-body { padding: 16px; }
+  .modal-footer { flex-direction: column; }
+  .modal-footer .btn { width: 100%; }
 }
 
 /* ── MISC ── */

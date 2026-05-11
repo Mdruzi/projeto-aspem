@@ -74,9 +74,12 @@ function renderTopBar(user, reqs) {
   };
   return `
   <div class="topbar">
-    <div>
-      <div class="topbar-title">${titles[user.role] || 'ASPEM'}</div>
-      <div class="topbar-subtitle">${new Date().toLocaleDateString('pt-BR',{weekday:'long',year:'numeric',month:'long',day:'numeric'})}</div>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Abrir menu">☰</button>
+      <div>
+        <div class="topbar-title">${titles[user.role] || 'ASPEM'}</div>
+        <div class="topbar-subtitle">${new Date().toLocaleDateString('pt-BR',{weekday:'long',year:'numeric',month:'long',day:'numeric'})}</div>
+      </div>
     </div>
     <div class="topbar-stat">
       <div class="topbar-stat-value">${stats.value}</div>

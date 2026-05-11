@@ -31,8 +31,9 @@ function render() {
   if (!state.user) { app.innerHTML = renderLogin(); bindLogin(); return; }
   const reqs = getRequisitions();
   const alertCount = getPendingAlertCount();
-  let html = `<div class="layout">
+  let html = `<div class="layout" id="main-layout">
     ${renderSidebar(state.user, alertCount)}
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
     <div class="main-content">
       ${renderTopBar(state.user, reqs)}
       ${state.user.role==='compras' && alertCount>0 && !state.alertDismissed ? renderAlertBanner(alertCount) : ''}
@@ -91,6 +92,14 @@ function bindLayout() {
   document.getElementById('nav-materials')?.addEventListener('click', ()=>{ state.view='materials'; render(); });
   document.getElementById('nav-admin')?.addEventListener('click', ()=>{ state.view='admin-panel'; render(); });
   document.getElementById('alert-close')?.addEventListener('click', ()=>{ state.alertDismissed=true; render(); });
+
+  const layout = document.getElementById('main-layout');
+  document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
+    layout.classList.add('sidebar-open');
+  });
+  document.getElementById('sidebar-overlay')?.addEventListener('click', () => {
+    layout.classList.remove('sidebar-open');
+  });
 }
 
 // ── BIND LOGIN ────────────────────────────────────────────────
